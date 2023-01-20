@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>RAG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- ** CSS Plugins Needed for the Project ** -->
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for ('static', filename = 'plugins/bootstrap/bootstrap.min.css')}}">
+  <!-- <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css"> -->
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="{{ url_for ('static', filename = 'plugins/themify-icons/themify-icons.css')}}">
+  <!--Favicon-->
+  <link rel="icon" href="static/images/favicon.png" type="image/x-icon">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <!-- Main Stylesheet -->
+  <link href="static\style.css" rel="stylesheet" media="screen" />
+  <script src="static/script.js"></script>
+</head>
+
+<body style="margin-top:50px;">
+<center>
+  <!-- HTML !-->
+  
+  
+        <div class="col-lg-9">
+          <div class="p-lg-5 p-4 bg-white">
+            <h2 class="mb-5">Upload The CSV File</h2>
+            <div class="content">
+              <!-- <div>
+                
+                <button class="button-29" role="button" type="button" onclick="myFunction()" >Upload CSV</button>
+              </div>   -->
+              <div id="mydiv">
+                <form action="/upload_csv" method="POST" enctype="multipart/form-data">
+                  <!-- <button class="button-29" type="file" id="file" name="file">Choose File</button> -->
+                  <label for="upload" class="button-29" >Choose File</label>
+
+                  <input type="file" id="upload" name="file">
+                   <br>
+                  <!-- </button> -->
+                  <!-- <label for="upload">Choose file</label> -->
+                  <button class="button-29">Upload CSV</button>
+                  <!-- <span id="file-chosen">No file chosen</span> -->
+                </form>
+              </div>
+
+  
+            <div>
+
+              <table id="csvRoot" style="float: left; width: 50%;">
+                <tr>
+                  <th>Valid Mail</th>
+                
+                </tr>
+                <tr>
+                {% for mail in validmail %}
+                  
+                    <td>{{ mail }}</td>
+
+                </tr>
+                {% endfor %}
+            
+              </table>
+
+              <table id="csvRoot"  style="display: right; width:50%">
+                <tr>
+                  <th>Invalid Mail</th>
+                
+                </tr>
+                <tr>
+                {% for mail in invalidmail %}
+                  
+                    <td>{{ mail }}</td>
+                </tr>
+                {% endfor %}
+                <!-- <tr>
+                {% for va_mail in validmail %}
+                  
+                    <td>{{ va_mail }}</td>
+                </tr>
+                {% endfor %} -->
+              <!-- </tr> -->
+              </table>
+             
+              
+     			    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.2.0/papaparse.min.js"></script>
+
+            </div>
+              <script>
+                function myFunction() {
+                  var x = document.getElementById("mydiv");
+                  if (x.style.display === "none") {
+                    x.style.display = "block";
+                  } else {
+                    x.style.display = "none";
+                  }
+                }
+                </script>
+            </div>
+          </div>
+
+  <!-- ** JS Plugins Needed for the Project ** -->
+  <!-- jquiry -->
+  <script src="static/plugins/jquery/jquery-1.12.4.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="static/plugins/bootstrap/bootstrap.min.js"></script>
+  <!-- match-height JS -->
+  <script src="static/plugins/match-height/jquery.matchHeight-min.js"></script>
+  <!-- Main Script -->
+  <script src="static/script.js"></script>
+</center>
+</body>
+
+</html>
